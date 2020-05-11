@@ -9,8 +9,8 @@ const logger = require('morgan');
 const path = require('path');
 
 const app = express();
-// require database configuration
 
+// require database configuration
 require('./configs/db.config');
 
 // Middleware Setup
