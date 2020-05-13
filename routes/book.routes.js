@@ -23,6 +23,73 @@ router.get('/books', (req, res) => {
 });
 
 // ****************************************************************************************
+// GET route for displaying the form to create a new book
+// ****************************************************************************************
+
+router.get('/books/create', (req, res) => res.render('book-create'));
+
+// ****************************************************************************************
+// POST route for saving a new book in the database
+// ****************************************************************************************
+
+router.post('/books/create', (req, res) => {
+  // console.log(req.body);
+  const { title, author, description, rating } = req.body;
+
+  Book.create({ title, author, description, rating })
+    // .then(bookFromDB => console.log(`New book created: ${bookFromDB.title}.`))
+    .then(() => res.redirect('/books'))
+    .catch(error => `Error while creating a new book: ${error}`);
+});
+
+// ****************************************************************************************
+// GET route for querying a specific book from the database
+// ****************************************************************************************
+
+router.get('/books/:id/edit', (req, res) => {
+  const { id } = req.params;
+  Book.findById(id)
+    .then(bookToEdit => {
+      // console.log(bookToEdit);
+      res.render('book-edit', bookToEdit);
+    })
+    .catch(error =>
+      console.log(`Error while getting a single book for edit: ${error}`)
+    );
+});
+
+// ****************************************************************************************
+// POST route to save changes after updates in a specific book
+// ****************************************************************************************
+
+router.post('/books/:id/edit', (req, res) => {
+  const { id } = req.params;
+  const { title, description, author, rating } = req.body;
+
+  Book.findByIdAndUpdate(
+    id,
+    { title, description, author, rating },
+    { new: true }
+  )
+    .then(updatedBook => res.redirect(`/books/${updatedBook._id}`))
+    .catch(error =>
+      console.log(`Error while updating a single book: ${error}`)
+    );
+});
+
+// ****************************************************************************************
+// POST route to delete a specific book
+// ****************************************************************************************
+
+router.post('/books/:id/delete', (req, res) => {
+  const { id } = req.params;
+
+  Book.findByIdAndDelete(id)
+    .then(() => res.redirect('/books'))
+    .catch(error => console.log(`Error while deleting a book: ${error}`));
+});
+
+// ****************************************************************************************
 // GET route for displaying the book details page
 // ****************************************************************************************
 
