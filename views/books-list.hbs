@@ -2,9 +2,11 @@
 <hr>
 
 {{#each books}}
-  <div>
-    <h3>{{title}}</h3>
-    <a href="/books/{{_id}}">See details</a>
-  </div>
-  <hr>
+<div>
+  <h3>{{title}}</h3>
+  <a href="/books/{{_id}}">See details</a>
+  <a href="/modify-book/{{_id}}">Edit details</a>
+  <a href="/books/delete/{{_id}}">Delete book</a>
+</div>
+<hr>
 {{/each}}

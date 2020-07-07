@@ -1,0 +1,25 @@
+<form action="/books/create" method="POST">
+
+  <label for="bookTitle">
+    Título do livro
+    <input type="text" id="bookTitle" name="title" />
+  </label>
+
+  <label for="bookDescription">
+    Descrição do livro
+    <input type="text" id="bookDescription" name="description" />
+  </label>
+
+  <label for="bookAuthor">
+    Autor(a) do livro
+    <input type="text" id="bookAuthor" name="author" />
+  </label>
+
+  <label for="bookRate">
+    Nota do livro
+    <input type="number" min="0" max="10" id="bookRate" name="rating" />
+  </label>
+  <button type="submit">
+    Salvar livro
+  </button>
+</form>

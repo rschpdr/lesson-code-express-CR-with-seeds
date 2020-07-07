@@ -1,0 +1,27 @@
+{{#with book}}
+<form action="/books/update/{{_id}}" method="POST">
+
+  <label for="bookTitle">
+    Título do livro
+    <input type="text" id="bookTitle" name="title" value="{{title}}" />
+  </label>
+
+  <label for="bookDescription">
+    Descrição do livro
+    <input type="text" id="bookDescription" name="description" value="{{description}}" />
+  </label>
+
+  <label for="bookAuthor">
+    Autor(a) do livro
+    <input type="text" id="bookAuthor" name="author" value="{{author}}" />
+  </label>
+
+  <label for="bookRate">
+    Nota do livro
+    <input type="number" min="0" max="10" id="bookRate" name="rating" value="{{rating}}" />
+  </label>
+  <button type="submit">
+    Salvar livro
+  </button>
+</form>
+{{/with}}
